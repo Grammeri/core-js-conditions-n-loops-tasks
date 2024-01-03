@@ -396,31 +396,29 @@ function getSpiralMatrix(size) {
  *  ]                 ]
  */
 
-function rotateMatrix(matrix) {
-  if (!matrix || matrix.length === 0 || matrix.length !== matrix[0].length) {
+function rotateMatrix(/* matrix */) {
+  /* if (!matrix || matrix.length === 0 || matrix.length !== matrix[0].length) {
     throw new Error('Invalid matrix');
   }
 
   const n = matrix.length;
-  const copy = matrix.map((inner) => inner.slice());
+  let tempStorage = {};
 
   for (let layer = 0; layer < n / 2; layer += 1) {
     const first = layer;
     const last = n - 1 - layer;
     for (let i = first; i < last; i += 1) {
       const offset = i - first;
-      const top = copy[first][i]; // save top
-      copy[first][i] = copy[last - offset][first]; // left -> top
-      copy[last - offset][first] = copy[last][last - offset]; // bottom -> left
-      copy[last][last - offset] = copy[i][last]; // right -> bottom
-      copy[i][last] = top; // top -> right
+
+      // Используйте tempStorage для хранения элементов
+      tempStorage = { top: matrix[first][i] };
+
+      matrix[first][i] = matrix[last - offset][first];
+      matrix[last - offset][first] = matrix[last][last - offset];
+      matrix[last][last - offset] = matrix[i][last];
+      matrix[i][last] = tempStorage.top;
     }
-  }
-  for (let i = 0; i < n; i += 1) {
-    for (let j = 0; j < n; j += 1) {
-      matrix[i][j] = copy[i][j];
-    }
-  }
+  } */
 }
 
 /**
