@@ -395,7 +395,30 @@ function getSpiralMatrix(size) {
  *    [7, 8, 9]         [9, 6, 3]
  *  ]                 ]
  */
+
 function rotateMatrix(/* matrix */) {
+  /* if (!matrix || matrix.length === 0 || matrix.length !== matrix[0].length) {
+    throw new Error('Invalid matrix');
+  }
+
+  const n = matrix.length;
+  let tempStorage = {};
+
+  for (let layer = 0; layer < n / 2; layer += 1) {
+    const first = layer;
+    const last = n - 1 - layer;
+    for (let i = first; i < last; i += 1) {
+      const offset = i - first;
+
+      // Используйте tempStorage для хранения элементов
+      tempStorage = { top: matrix[first][i] };
+
+      matrix[first][i] = matrix[last - offset][first];
+      matrix[last - offset][first] = matrix[last][last - offset];
+      matrix[last][last - offset] = matrix[i][last];
+      matrix[i][last] = tempStorage.top;
+    }
+  } */
   throw new Error('Not implemented');
 }
 
@@ -434,8 +457,25 @@ function sortByAsc(/* arr */) {
  *  '012345', 3 => '024135' => '043215' => '031425'
  *  'qwerty', 3 => 'qetwry' => 'qtrewy' => 'qrwtey'
  */
-function shuffleChar(/* str, iterations */) {
-  throw new Error('Not implemented');
+function shuffleChar(str, iterations) {
+  let currentStr = str;
+
+  for (let iter = 0; iter < iterations; iter += 1) {
+    let evenChars = '';
+    let oddChars = '';
+
+    for (let i = 0; i < currentStr.length; i += 1) {
+      if (i % 2 === 0) {
+        evenChars += currentStr[i];
+      } else {
+        oddChars += currentStr[i];
+      }
+    }
+
+    currentStr = evenChars + oddChars;
+  }
+
+  return currentStr;
 }
 
 /**
